@@ -1,0 +1,16 @@
+{
+  "home": {
+    "title": "Welcome",
+    "description": "This is a Next.js starter template."
+  },
+  "theme": {
+    "light": "Light",
+    "dark": "Dark",
+    "system": "System"
+  },
+  "navigation": {
+    "home": "Home",
+    "about": "About",
+    "contact": "Contact"
+  }
+}
