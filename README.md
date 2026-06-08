@@ -1,12 +1,18 @@
-# Next.js Starter with Tailwind CSS and TypeScript
+# Next.js + TypeScript + Tailwind CSS + i18n Starter
 
-A Next.js 16 starter for small–medium projects.
+A production-ready starter for small-to-medium Next.js projects with internationalization, dark/light mode, and code quality tooling.
 
 ## Stack
 
-- **Next.js 16** - App Router + React Server components
-- **TypeScript** - strict mode
-- **Tailwind CSS** - utility-first styling
+| Layer      | Choice                                 |
+| ---------- | -------------------------------------- |
+| Framework  | Next.js 16 (App Router)                |
+| Language   | TypeScript (strict)                    |
+| Styling    | Tailwind CSS v4                        |
+| i18n       | next-intl                              |
+| Theme      | next-themes                            |
+| Linting    | ESLint 9 + eslint-config-next          |
+| Formatting | Prettier + prettier-plugin-tailwindcss |
 
 ## Getting started
 
@@ -14,6 +20,8 @@ A Next.js 16 starter for small–medium projects.
 npm install
 npm run dev
 ```
+
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
 ## Scripts
 
@@ -24,6 +32,24 @@ npm run dev
 | `npm run lint`   | Run ESLint           |
 | `npm run format` | Format with Prettier |
 
----
+## Features
+
+### Internationalization
+
+- Locale-aware routing via `next-intl` middleware
+- Supports **en**, **ar**, **fr** with automatic detection
+- RTL support for Arabic
+
+### Dark / Light Mode
+
+- Theme toggle via `next-themes` with `class` strategy
+- Persists user preference; respects system preference by default
+- Tailwind v4 dark variant (`@custom-variant dark`)
+
+### Code Quality
+
+- ESLint 9 with `eslint-config-next` for core-web-vitals + TypeScript rules
+- Prettier with `prettier-plugin-tailwindcss` for consistent class ordering
+- Format on save via VS Code settings
 
 > 🚧 Setup in progress — more features coming soon.
