@@ -1,7 +1,7 @@
 {
   "home": {
     "title": "Welcome",
-    "description": "This is a Next.js starter template."
+    "description": "A modern, production-ready foundation for building multilingual web applications. Built with Next.js 16, TypeScript, Tailwind CSS v4, and next-intl."
   },
   "theme": {
     "light": "Light",

@@ -4,10 +4,14 @@ export default async function Home() {
   const t = await getTranslations('home');
 
   return (
-    <div className="flex min-h-screen">
-      <main className="flex h-full w-full flex-col p-4">
-        <h1 className="text-2xl font-bold">{t('title')}</h1>
-        <p>{t('description')}</p>
+    <div className="flex min-h-[calc(100vh-3.5rem)]">
+      <main className="mx-auto flex w-full max-w-3xl flex-col items-center justify-center px-4 text-center">
+        <h1 className="text-4xl font-light tracking-tight text-zinc-900 dark:text-zinc-50 sm:text-5xl">
+          {t('title')}
+        </h1>
+        <p className="mt-4 max-w-lg text-base leading-relaxed text-zinc-500 dark:text-zinc-400">
+          {t('description')}
+        </p>
       </main>
     </div>
   );
