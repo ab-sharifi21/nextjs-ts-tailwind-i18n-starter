@@ -1,9 +1,9 @@
-import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
-import { NextIntlClientProvider } from 'next-intl';
-import { getMessages, getTranslations } from 'next-intl/server';
 import { ThemeProvider } from '../components/theme/theme-provider';
 import { Header } from '../components/layout/header';
+import { LocaleProvider } from '../components/locale/locale-provider';
+import enMessages from '../../messages/en.json';
+import esMessages from '../../messages/es.json';
 import './globals.css';
 
 const geistSans = Geist({
@@ -16,39 +16,24 @@ const geistMono = Geist_Mono({
   subsets: ['latin'],
 });
 
-type Props = {
+export default function LocaleLayout({
+  children,
+}: {
   children: React.ReactNode;
-  params: Promise<{ locale: string }>;
-};
-
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { locale } = await params;
-  const t = await getTranslations({ locale, namespace: 'home' });
-
-  return {
-    title: t('title'),
-    description: t('description'),
-  };
-}
-
-export default async function LocaleLayout({ children, params }: Props) {
-  const { locale } = await params;
-  const messages = await getMessages();
-
+}) {
   return (
     <html
-      lang={locale}
-      dir={locale === 'ar' ? 'rtl' : 'ltr'}
+      lang="en"
       className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       suppressHydrationWarning
     >
       <body>
-        <NextIntlClientProvider messages={messages}>
+        <LocaleProvider messages={{ en: enMessages, es: esMessages }}>
           <ThemeProvider>
             <Header />
             {children}
           </ThemeProvider>
-        </NextIntlClientProvider>
+        </LocaleProvider>
       </body>
     </html>
   );

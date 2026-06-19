@@ -1,4 +1,5 @@
 import { ThemeToggle } from '../theme/theme-toggle';
+import { LocaleSwitcher } from '../locale/locale-switcher';
 
 export function Header() {
   return (
@@ -7,7 +8,10 @@ export function Header() {
         <span className="text-sm font-medium text-zinc-900 dark:text-zinc-100">
           Next.js Starter
         </span>
-        <ThemeToggle />
+        <div className="flex items-center gap-2">
+          <LocaleSwitcher />
+          <ThemeToggle />
+        </div>
       </div>
     </header>
   );
