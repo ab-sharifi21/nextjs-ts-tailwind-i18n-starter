@@ -1,6 +1,6 @@
 'use client';
 
-import { createContext, useCallback, useContext, useSyncExternalStore } from 'react';
+import { createContext, useCallback, useContext, useState } from 'react';
 import { NextIntlClientProvider } from 'next-intl';
 import type { AbstractIntlMessages } from 'next-intl';
 
@@ -19,31 +19,25 @@ export function useLocaleState() {
   return ctx;
 }
 
-function subscribeToStorage(onStoreChange: () => void) {
-  window.addEventListener('storage', onStoreChange);
-  return () => window.removeEventListener('storage', onStoreChange);
-}
-
-function readLocale() {
-  return localStorage.getItem('locale') ?? 'en';
-}
-
-function getServerSnapshot() {
-  return 'en';
+function setCookie(name: string, value: string) {
+  document.cookie = `${name}=${value};path=/;max-age=31536000;SameSite=Lax`;
 }
 
 export function LocaleProvider({
+  locale: initialLocale,
   messages,
   children,
 }: {
+  locale: string;
   messages: Messages;
   children: React.ReactNode;
 }) {
-  const locale = useSyncExternalStore(subscribeToStorage, readLocale, getServerSnapshot);
+  const [locale, setLocaleState] = useState(initialLocale);
 
   const setLocale = useCallback((nextLocale: string) => {
+    setLocaleState(nextLocale);
     localStorage.setItem('locale', nextLocale);
-    window.dispatchEvent(new Event('storage'));
+    setCookie('NEXT_LOCALE', nextLocale);
   }, []);
 
   return (
