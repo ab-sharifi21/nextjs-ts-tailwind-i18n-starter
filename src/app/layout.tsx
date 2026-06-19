@@ -1,3 +1,4 @@
+import { getLocale } from 'next-intl/server';
 import { Geist, Geist_Mono } from 'next/font/google';
 import { ThemeProvider } from '../components/theme/theme-provider';
 import { Header } from '../components/layout/header';
@@ -16,19 +17,21 @@ const geistMono = Geist_Mono({
   subsets: ['latin'],
 });
 
-export default function LocaleLayout({
+export default async function LocaleLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const locale = await getLocale();
+
   return (
     <html
-      lang="en"
+      lang={locale}
       className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       suppressHydrationWarning
     >
       <body>
-        <LocaleProvider messages={{ en: enMessages, es: esMessages }}>
+        <LocaleProvider locale={locale} messages={{ en: enMessages, es: esMessages }}>
           <ThemeProvider>
             <Header />
             {children}
