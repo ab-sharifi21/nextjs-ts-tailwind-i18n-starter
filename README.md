@@ -40,22 +40,42 @@ Open [http://localhost:3000](http://localhost:3000) in your browser.
 ## Project structure
 
 ```
-src/
-├── app/              # Next.js App Router pages & layout
-│   ├── globals.css
-│   ├── layout.tsx
-│   └── page.tsx
-├── components/
-│   ├── layout/       # Header, footer, etc.
-│   ├── locale/       # Locale provider & switcher
-│   └── theme/        # Theme provider & toggle
-├── i18n/
-│   ├── request.ts    # next-intl server config (reads locale from cookie)
-│   └── routing.ts    # Locale definitions & routing config
-messages/
-├── en.json           # English translations
-└── es.json           # Spanish translations
+.
+├── .env.example                   # Environment variable template
+├── messages/                      # Translation JSON files by locale
+│   ├── en.json
+│   └── es.json
+├── public/
+│   └── images/                    # Static images & assets
+├── src/
+│   ├── app/                       # Next.js App Router pages & layout
+│   │   ├── globals.css
+│   │   ├── layout.tsx
+│   │   └── page.tsx
+│   ├── components/                # UI components grouped by domain
+│   │   ├── layout/                #   Header, footer, etc.
+│   │   ├── locale/                #   Locale provider & switcher
+│   │   └── theme/                 #   Theme provider & toggle
+│   ├── hooks/                     # Custom React hooks
+│   ├── i18n/                      # next-intl configuration
+│   │   ├── request.ts             #   Server config (reads locale from cookie)
+│   │   └── routing.ts             #   Locale definitions & routing config
+│   ├── lib/                       # Utility functions & helpers
+│   └── types/                     # Shared TypeScript type definitions
 ```
+
+### Directory conventions
+
+| Directory          | Purpose |
+| ------------------ | ------- |
+| `src/app/`         | Next.js App Router — file-based pages, layouts, loading & error boundaries |
+| `src/components/`  | React components, grouped by feature/domain (`layout/`, `locale/`, `theme/`) |
+| `src/hooks/`       | Custom React hooks extracted from component logic |
+| `src/i18n/`        | next-intl server request config & routing definitions |
+| `src/lib/`         | Pure utility functions, API clients, constants, `cn()` helper |
+| `src/types/`       | Shared TypeScript interfaces, types, and enums |
+| `public/images/`   | Static images, icons, and other public assets |
+| `messages/`        | Locale-specific translation JSON files |
 
 ## Features
 
