@@ -39,7 +39,7 @@ Open [http://localhost:3000](http://localhost:3000) in your browser.
 
 ## Project structure
 
-```
+```mermaid
 .
 ├── .env.example                   # Environment variable template
 ├── messages/                      # Translation JSON files by locale
@@ -66,16 +66,16 @@ Open [http://localhost:3000](http://localhost:3000) in your browser.
 
 ### Directory conventions
 
-| Directory          | Purpose |
-| ------------------ | ------- |
-| `src/app/`         | Next.js App Router — file-based pages, layouts, loading & error boundaries |
-| `src/components/`  | React components, grouped by feature/domain (`layout/`, `locale/`, `theme/`) |
-| `src/hooks/`       | Custom React hooks extracted from component logic |
-| `src/i18n/`        | next-intl server request config & routing definitions |
-| `src/lib/`         | Pure utility functions, API clients, constants, `cn()` helper |
-| `src/types/`       | Shared TypeScript interfaces, types, and enums |
-| `public/images/`   | Static images, icons, and other public assets |
-| `messages/`        | Locale-specific translation JSON files |
+| Directory         | Purpose                                                                      |
+| ----------------- | ---------------------------------------------------------------------------- |
+| `src/app/`        | Next.js App Router — file-based pages, layouts, loading & error boundaries   |
+| `src/components/` | React components, grouped by feature/domain (`layout/`, `locale/`, `theme/`) |
+| `src/hooks/`      | Custom React hooks extracted from component logic                            |
+| `src/i18n/`       | next-intl server request config & routing definitions                        |
+| `src/lib/`        | Pure utility functions, API clients, constants, `cn()` helper                |
+| `src/types/`      | Shared TypeScript interfaces, types, and enums                               |
+| `public/images/`  | Static images, icons, and other public assets                                |
+| `messages/`       | Locale-specific translation JSON files                                       |
 
 ## Features
 

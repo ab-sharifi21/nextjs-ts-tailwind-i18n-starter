@@ -16,7 +16,8 @@ const LocaleContext = createContext<LocaleContextValue | null>(null);
 
 export function useLocaleState() {
   const ctx = useContext(LocaleContext);
-  if (!ctx) throw new Error('useLocaleState must be used within LocaleProvider');
+  if (!ctx)
+    throw new Error('useLocaleState must be used within LocaleProvider');
   return ctx;
 }
 
@@ -36,12 +37,15 @@ export function LocaleProvider({
   const router = useRouter();
   const [locale, setLocaleState] = useState(initialLocale);
 
-  const setLocale = useCallback((nextLocale: string) => {
-    setLocaleState(nextLocale);
-    localStorage.setItem('locale', nextLocale);
-    setCookie('NEXT_LOCALE', nextLocale);
-    router.refresh();
-  }, [router]);
+  const setLocale = useCallback(
+    (nextLocale: string) => {
+      setLocaleState(nextLocale);
+      localStorage.setItem('locale', nextLocale);
+      setCookie('NEXT_LOCALE', nextLocale);
+      router.refresh();
+    },
+    [router],
+  );
 
   return (
     <LocaleContext.Provider value={{ locale, setLocale }}>

@@ -31,7 +31,10 @@ export default async function LocaleLayout({
       suppressHydrationWarning
     >
       <body>
-        <LocaleProvider locale={locale} messages={{ en: enMessages, es: esMessages }}>
+        <LocaleProvider
+          locale={locale}
+          messages={{ en: enMessages, es: esMessages }}
+        >
           <ThemeProvider>
             <Header />
             {children}
