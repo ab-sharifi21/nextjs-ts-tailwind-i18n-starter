@@ -1,6 +1,7 @@
 'use client';
 
 import { createContext, useCallback, useContext, useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { NextIntlClientProvider } from 'next-intl';
 import type { AbstractIntlMessages } from 'next-intl';
 
@@ -32,13 +33,15 @@ export function LocaleProvider({
   messages: Messages;
   children: React.ReactNode;
 }) {
+  const router = useRouter();
   const [locale, setLocaleState] = useState(initialLocale);
 
   const setLocale = useCallback((nextLocale: string) => {
     setLocaleState(nextLocale);
     localStorage.setItem('locale', nextLocale);
     setCookie('NEXT_LOCALE', nextLocale);
-  }, []);
+    router.refresh();
+  }, [router]);
 
   return (
     <LocaleContext.Provider value={{ locale, setLocale }}>
