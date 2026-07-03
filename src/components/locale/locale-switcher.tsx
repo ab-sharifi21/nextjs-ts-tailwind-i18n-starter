@@ -19,7 +19,7 @@ export function LocaleSwitcher() {
           key={loc}
           onClick={() => setLocale(loc)}
           disabled={locale === loc}
-          className="rounded px-1.5 py-0.5 text-xs font-medium transition-colors disabled:cursor-not-allowed disabled:text-zinc-400 dark:disabled:text-zinc-600 text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100"
+          className="rounded px-1.5 py-0.5 text-xs font-medium text-zinc-500 transition-colors hover:cursor-pointer hover:text-zinc-900 disabled:text-zinc-400 dark:text-zinc-400 dark:hover:text-zinc-100 dark:disabled:text-zinc-600"
         >
           {labels[loc]}
         </button>
