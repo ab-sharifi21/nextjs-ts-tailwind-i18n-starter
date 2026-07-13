@@ -13,6 +13,7 @@ A production-ready starter for small-to-medium Next.js projects with internation
 | Theme      | next-themes                            |
 | Linting    | ESLint 9 + eslint-config-next          |
 | Formatting | Prettier + prettier-plugin-tailwindcss |
+| Git Hooks  | Husky + lint-staged                    |
 
 ## Requirements
 
@@ -109,3 +110,4 @@ Open [http://localhost:3000](http://localhost:3000) in your browser.
 - ESLint 9 with `eslint-config-next` for core-web-vitals + TypeScript rules
 - Prettier with `prettier-plugin-tailwindcss` for consistent class ordering
 - Format on save via VS Code settings
+- Husky pre-commit hook runs lint-staged to lint and format staged files before each commit
