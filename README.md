@@ -40,7 +40,7 @@ Open [http://localhost:3000](http://localhost:3000) in your browser.
 
 ## Project structure
 
-```mermaid
+```text
 .
 ├── .env.example                   # Environment variable template
 ├── messages/                      # Translation JSON files by locale
