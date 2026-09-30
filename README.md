@@ -17,7 +17,7 @@ A production-ready starter for small-to-medium Next.js projects with internation
 
 ## Requirements
 
-- **Node.js** >= 18.18
+- **Node.js** >= 20.9.0
 - **npm**, **pnpm**, or **yarn**
 
 ## Getting started
@@ -82,9 +82,9 @@ Open [http://localhost:3000](http://localhost:3000) in your browser.
 
 ### Internationalization
 
-- Locale selection via `next-intl` with cookie + localStorage persistence
+- Locale selection via `next-intl` with cookie persistence
 - Supports **en**, **es**
-- No URL prefix — locale is stored in a `NEXT_LOCALE` cookie and synced to `localStorage`
+- No URL prefix — locale is stored in a `NEXT_LOCALE` cookie
 
 ### Adding a new locale
 
@@ -95,7 +95,7 @@ Open [http://localhost:3000](http://localhost:3000) in your browser.
 
 ### How locale persistence works
 
-- **Client-side:** on switch, locale is saved to `localStorage` and a `NEXT_LOCALE` cookie
+- **Client-side:** on switch, locale is saved to a `NEXT_LOCALE` cookie
 - **Server-side:** `src/i18n/request.ts` reads the `NEXT_LOCALE` cookie so all server components render in the correct language
 - **Hydration:** the initial locale from the cookie is passed as a prop to `LocaleProvider`, preventing hydration mismatches
 

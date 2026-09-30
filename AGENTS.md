@@ -16,11 +16,20 @@ Run it before calling work done. The pre-commit hook only runs lint-staged.
 
 ## Forbidden
 
-**Never install, add, upgrade, or remove any package.** write class strings directly. Don't add config files, a test framework, or new
+**Never install, add, upgrade, or remove any package.** Only 5 runtime deps
+(deliberate). No `clsx`, no `tailwind-merge` — so **no `cn()` helper exists**;
+write class strings directly. Don't add config files, a test framework, or new
 npm scripts either. If something seems to need a library, ask first.
 
+**Never commit, push, or open a PR.** Leave changes in the working tree and let
+the user review and commit. If asked to commit, write the message and hand it
+over rather than running `git commit` yourself. Never force-push, amend, or
+rewrite history unless explicitly told to.
+
 **Never hardcode user-facing strings.** Everything visible, including
-`aria-label`s, comes from `messages/*.json`.
+`aria-label`s, comes from `messages/*.json`. Existing violations: the brand text
+in `components/layout/header.tsx` and `aria-label="Toggle theme"` in
+`components/theme/theme-toggle.tsx`.
 
 ## Gotchas
 
