@@ -40,7 +40,6 @@ export function LocaleProvider({
   const setLocale = useCallback(
     (nextLocale: string) => {
       setLocaleState(nextLocale);
-      localStorage.setItem('locale', nextLocale);
       setCookie('NEXT_LOCALE', nextLocale);
       router.refresh();
     },
