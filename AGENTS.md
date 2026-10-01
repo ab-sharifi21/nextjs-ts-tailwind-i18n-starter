@@ -5,31 +5,29 @@ next-themes wired up. It is a starter, not an app: `src/app/page.tsx` renders
 one heading and one paragraph. `src/hooks/`, `src/lib/`, and `src/types/` are
 empty placeholders.
 
-Requires Node >= 20.9.0 (the README's 18.18 is wrong).
+## Rules
+
+- Minimal changes only. Do not refactor outside the task scope.
+- Show only modified method or block. Not full file rewrite.
+- No new packages unless explicitly requested.
+- No comments or docstrings unless asked.
+
+## Caveman Mode
+
+- Short answers
+- No filler words
 
 ## Commands
 
 `npm run dev`, `npm run build`, `npm run lint`, `npm run format`.
 
-There is no typecheck script and no tests — `npm run build` is the only typecheck.
-Run it before calling work done. The pre-commit hook only runs lint-staged.
-
 ## Forbidden
 
-**Never install, add, upgrade, or remove any package.** Only 5 runtime deps
-(deliberate). No `clsx`, no `tailwind-merge` — so **no `cn()` helper exists**;
-write class strings directly. Don't add config files, a test framework, or new
-npm scripts either. If something seems to need a library, ask first.
-
-**Never commit, push, or open a PR.** Leave changes in the working tree and let
-the user review and commit. If asked to commit, write the message and hand it
-over rather than running `git commit` yourself. Never force-push, amend, or
-rewrite history unless explicitly told to.
-
-**Never hardcode user-facing strings.** Everything visible, including
-`aria-label`s, comes from `messages/*.json`. Existing violations: the brand text
-in `components/layout/header.tsx` and `aria-label="Toggle theme"` in
-`components/theme/theme-toggle.tsx`.
+- Never install, add, upgrade, or remove any package
+- Never commit, push, or open a PR.
+- Big refactors without ask.
+- Framework change
+- Unneeded boilerplate
 
 ## Gotchas
 
