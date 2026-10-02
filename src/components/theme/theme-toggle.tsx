@@ -1,54 +1,67 @@
 'use client';
 
+import { useSyncExternalStore } from 'react';
 import { useTheme } from 'next-themes';
+import { Monitor, Moon, Sun } from 'lucide-react';
+import type { LucideIcon } from 'lucide-react';
+
+const options = ['light', 'system', 'dark'] as const;
+
+type Option = (typeof options)[number];
+
+const subscribe = () => () => {};
+
+const icons: Record<Option, LucideIcon> = {
+  light: Sun,
+  system: Monitor,
+  dark: Moon,
+};
 
 export function ThemeToggle() {
-  const { resolvedTheme, setTheme } = useTheme();
+  const { theme, setTheme } = useTheme();
+  const mounted = useSyncExternalStore(
+    subscribe,
+    () => true,
+    () => false,
+  );
+
+  const index = mounted
+    ? Math.max(options.indexOf((theme ?? 'system') as Option), 0)
+    : 0;
 
   return (
-    <button
-      onClick={() => setTheme(resolvedTheme === 'dark' ? 'light' : 'dark')}
-      className="rounded-md p-2 text-zinc-500 transition-colors hover:cursor-pointer hover:bg-zinc-100 hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-800 dark:hover:text-zinc-100"
-      aria-label="Toggle theme"
+    <div
+      role="group"
+      aria-label="Theme"
+      className="relative flex items-center rounded-full border border-zinc-200 bg-zinc-100 p-0.5 dark:border-zinc-800 dark:bg-zinc-900"
     >
-      <span className="block dark:hidden" aria-hidden="true">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="18"
-          height="18"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        >
-          <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" />
-        </svg>
-      </span>
-      <span className="hidden dark:block" aria-hidden="true">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="18"
-          height="18"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        >
-          <circle cx="12" cy="12" r="4" />
-          <path d="M12 2v2" />
-          <path d="M12 20v2" />
-          <path d="m4.93 4.93 1.41 1.41" />
-          <path d="m17.66 17.66 1.41 1.41" />
-          <path d="M2 12h2" />
-          <path d="M20 12h2" />
-          <path d="m6.34 17.66-1.41 1.41" />
-          <path d="m19.07 4.93-1.41 1.41" />
-        </svg>
-      </span>
-    </button>
+      {mounted && (
+        <span
+          aria-hidden="true"
+          className="absolute top-0.5 left-0.5 h-7 w-7 rounded-full bg-white shadow-sm ring-1 ring-zinc-900/5 dark:bg-zinc-700 dark:ring-white/10"
+          style={{ transform: `translateX(${index * 100}%)` }}
+        />
+      )}
+      {options.map((option, i) => {
+        const Icon = icons[option];
+
+        return (
+          <button
+            key={option}
+            type="button"
+            onClick={() => setTheme(option)}
+            aria-label={option}
+            aria-pressed={mounted ? theme === option : undefined}
+            className={`relative flex h-7 w-7 items-center justify-center rounded-full focus-visible:ring-2 focus-visible:ring-zinc-900/20 focus-visible:outline-none dark:focus-visible:ring-zinc-100/30 ${
+              index === i
+                ? 'text-zinc-900 dark:text-zinc-50'
+                : 'text-zinc-500 hover:cursor-pointer hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100'
+            }`}
+          >
+            <Icon className="size-3.5" />
+          </button>
+        );
+      })}
+    </div>
   );
 }
